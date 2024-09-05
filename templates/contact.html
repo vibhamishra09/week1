@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}contact{% endblock title %}Home
+  {% block body %}
+<h3 class= "text-center">ADD RECEIPE</h3>
+<form method ="post" action="/contact">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="name" class="form-label">Receipe_Name</label>
+    <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text"></div>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">email</label>
+    <input type="text" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="image" class="form-label">Receipe_image</label>
+    <input type="file" class="form-control" id="phone" rows="3" name="image">
+  </div>
+  <div class="mb-3">
+    <label for="desc" class="form-label">Receipe_description</label>
+    <input type="text" class="form-control" id="desc" rows="3" name="desc">
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+<div class="mt-5">
+<div class="mx-auto col-6">
+  <div class="mb-3">
+
+  <label for="search" class="form-label">Search Food</label>
+  <input type="text" class="form-control" value="{{contact.name}}" id="search" name="search" aria-describedby="emailHelp">
+  <button type="submit" class="btn btn-primary">Search</button>
+</div>
+</div>
+</form> 
+</div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">receipe_name</th>
+      <th scope="col">receipe_description</th>
+      <th scope="col">receipe_image</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for contact in contacts %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{contact.name}}</td>
+      <td>{{contact.desc}}</td>
+      <td>
+       <img src="/media/{{contact.phone}}">
+      </td>
+      <td>
+        <a href="/delete_receipe/{{contact.id}}/" class="btn btn-danger">Delete</a>
+        <a href="/update_receipe/{{contact.id}}/" class="btn btn-success">Update</a>
+      </td>
+      </tr>
+    
+   
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock body %}

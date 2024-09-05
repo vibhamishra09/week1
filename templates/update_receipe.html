@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}contact{% endblock title %}Home
+  {% block body %}
+<h3 class= "text-center">UPDATE RECEIPE</h3>
+<form method ="post" action="/contact">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="name" class="form-label">Receipe_Name</label>
+    <input type="text" value="{{contact.name}}" class="form-control" id="name" name="name" aria-describedby="emailHelp">
+    <div id="name" class="form-text"></div>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">email</label>
+    <input type="text" class="form-control" id="email" rows="3" name="email">
+    <div id="emailHelp" class="form-text"></div>
+  </div>
+  <div class="mb-3">
+    <label for="phone" class="form-label">Receipe_image</label>
+    <input type="file" class="form-control" id="phone" rows="3" name="image">
+  </div>
+  <div class="mb-3">
+    <label for="desc" class="form-label">Receipe_description</label>
+  <textarea name="desc" id="desc">{{contact.desc}}</textarea>
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">update receipe</button>
+</form> 
+
+
+
+{% endblock body %}
